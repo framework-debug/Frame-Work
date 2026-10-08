@@ -30,5 +30,8 @@ async function copyLink(){closeMenu(); try{await navigator.clipboard.writeText(l
 document.querySelector('#copy').addEventListener('click',copyLink);
 document.querySelector('#share').addEventListener('click',async()=>{closeMenu();if(navigator.share){try{await navigator.share({title:document.title,url:location.href});}catch(error){if(error.name !== 'AbortError') copyLink();}}else copyLink();});
 updateAmount();
+const embed = document.querySelector('#bmc-embed');
+donate.after(embed);
+if(embed.querySelector('a')) donate.hidden = true;
 document.querySelector('.payment-note').textContent = BUY_ME_A_COFFEE_URL ? 'Choose your final amount and add your message on Buy Me a Coffee.' : 'Buy Me a Coffee link coming soon.';
 if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'configure_tip',description:'Set the seed quantity and monthly option in the tip form. Does not send a payment.',inputSchema:{type:'object',properties:{seeds:{type:'integer',minimum:1,maximum:100},monthly:{type:'boolean'}},required:['seeds','monthly'],additionalProperties:false},execute(input){if(!Number.isInteger(input.seeds)||input.seeds<1||input.seeds>100||typeof input.monthly!=='boolean')throw new Error('Invalid tip options');count.value=String(input.seeds);monthly.checked=input.monthly;updateAmount();return {seeds:input.seeds,amount:input.seeds*10,currency:'USD',monthly:input.monthly,paymentAvailable:false};}})).catch(()=>{});}catch{}}
