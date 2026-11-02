@@ -1,0 +1,8 @@
+.product-attachment-row{min-height:25px;display:flex;align-items:center}
+.product-attachment{color:#77776f;font:7px 'DM Mono',monospace;letter-spacing:.1em}
+.dialog-file{display:flex;align-items:center;border-top:1px solid #d7d7d1;border-bottom:1px solid #d7d7d1;padding:14px 0;margin:-8px 0 22px}
+.dialog-file[hidden]{display:none}
+.dialog-file div{display:flex;flex-direction:column;gap:5px}
+.dialog-file div span{color:#8a8a83;font:7px 'DM Mono',monospace;letter-spacing:.08em}
+.dialog-file strong{font:500 14px 'Space Grotesk',sans-serif;letter-spacing:-.04em}
+@media(max-width:620px){.dialog-file{margin:-2px 0 20px}}
